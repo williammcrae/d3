@@ -1,1 +1,43 @@
 /* ... */
+
+div {
+
+}
+
+div.day {
+    min-width: 20%;
+    min-height: 200px;
+    display: inline-block;
+    border: 1px solid black;
+    border-right: none;
+    background: lightgray;
+}
+
+div.day:last-child {
+    border-right: 1px solid black;
+}
+
+div.day span {
+    display: block;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+div.time {
+    width: 33%;
+    height: 100%;
+    display: inline-block;
+    border: none;
+    border-right: 1px solid black;
+    background: lightblue;
+}
+
+div.time:last-child {
+    border-right: none;
+}
+
+div.time span {
+    display: block;
+    text-align: center;
+    border: none;
+}
