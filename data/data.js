@@ -182,9 +182,9 @@ window.onload=function(){
 
     // Tides
 
-    var margin = {top: 20, right: 20, bottom: 30, left: 50},
-        width = 900 - margin.left - margin.right,
-        height = 200 - margin.top - margin.bottom;
+    var margin = {top: 20, right: 0, bottom: 30, left: 0},
+        width = 240 - margin.left - margin.right,
+        height = 100 - margin.top - margin.bottom;
 
     var x = d3.scale.linear()
         .range([0, width]);
@@ -216,16 +216,16 @@ window.onload=function(){
 
     x.domain([tides_start_timestamp,tides_end_timestamp]);
 
-    y.domain(d3.extent(tides, function(d) { return d.height; }));
+    y.domain([0, d3.max(tides, function(d) { return d.height; })]);
 
     svg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+//        .call(xAxis);
 
     svg.append("g")
         .attr("class", "y axis")
-        .call(yAxis);
+//        .call(yAxis);
 
 //    svg.append("path")
 //        .datum(tides)
