@@ -3,23 +3,23 @@ window.onload=function(){
     d3.select('#test').text("It's alive!!!");
 
 
-    var wave_data = [
+    var data = [
         {
             day: "Thur",
             times: [
                 {
                     time: "6am",
-                    height: 1,
+                    wave_height: 1,
                     direction: 0
                 },
                 {
                     time: "12pm",
-                    height: 2,
+                    wave_height: 2,
                     direction: 45
                 },
                 {
                     time: "6pm",
-                    height: 3,
+                    wave_height: 3,
                     direction: 90
                 }
             ]
@@ -29,17 +29,17 @@ window.onload=function(){
             times: [
                 {
                     time: "6am",
-                    height: 0.5,
+                    wave_height: 0.5,
                     direction: 180
                 },
                 {
                     time: "12pm",
-                    height: 0.75,
+                    wave_height: 0.75,
                     direction: 200
                 },
                 {
                     time: "6pm",
-                    height: 0.25,
+                    wave_height: 0.25,
                     direction: 220
                 }
             ]
@@ -54,52 +54,52 @@ window.onload=function(){
         {
             status: 'Low',
             timestamp: 1368662760,
-            height: 0.8
+            tide_height: 0.8
         },
         {
             status: 'High',
             timestamp: 1368685560,
-            height: 1.5
+            tide_height: 1.5
         },
         {
             status: 'Low',
             timestamp: 1368710100,
-            height: 0.6
+            tide_height: 0.6
         },
         {
             status: 'High',
             timestamp: 1368732720,
-            height: 1.3
+            tide_height: 1.3
         },
         {
             status: 'Low',
             timestamp: 1368753240,
-            height: 0.8
+            tide_height: 0.8
         },
         {
             status: 'High',
             timestamp: 1368775620,
-            height: 1.5
+            tide_height: 1.5
         },
         {
             status: 'Low',
             timestamp: 1368799620,
-            height: 0.6
+            tide_height: 0.6
         },
         {
             status: 'High',
             timestamp: 1368822600,
-            height: 1.4
+            tide_height: 1.4
         },
         {
             status: 'Low',
             timestamp: 1368843840,
-            height: 0.8
+            tide_height: 0.8
         },
         {
             status: 'High',
             timestamp: 1368865740,
-            height: 1.5
+            tide_height: 1.5
         }
     ];
 
@@ -112,7 +112,7 @@ window.onload=function(){
 
     // Days
     var days_selection = d3.select("#wave").selectAll("div.day")
-        .data(wave_data);
+        .data(data);
 
     days_selection.enter()
         .append("div")
@@ -154,17 +154,17 @@ window.onload=function(){
             .text(function(d, i) {
                 return d;
             });
-        // height
-        var height_selection = d3.select(this).selectAll("div.height").data([d.height]);
-        height_selection.enter()
+        // wave_height
+        var wave_height_selection = d3.select(this).selectAll("div.wave_height").data([d.wave_height]);
+        wave_height_selection.enter()
             .append("span")
-            .classed("height",true)
+            .classed("wave_height",true)
             .text(function(d, i) {
                 return d + "ft";
             });
-        height_selection.enter()
+        wave_height_selection.enter()
             .append("div")
-            .classed("height",true)
+            .classed("wave_height",true)
             .style("height", function(d,i){
                 return (d * 20) + "px";
             });
@@ -200,12 +200,12 @@ window.onload=function(){
     var area = d3.svg.area()
         .interpolate("cardinal")
         .x(function(d) { return x(d.timestamp); })
-        .y0(function(d) { return y(d.height); })
+        .y0(function(d) { return y(d.tide_height); })
         .y1(function(d) { return height; });
 
     x.domain([tides_start_timestamp,tides_end_timestamp]);
 
-    y.domain([0, d3.max(tides, function(d) { return d.height; })]);
+    y.domain([0, d3.max(tides, function(d) { return d.tide_height; })]);
 
     svg.append("g")
         .attr("class", "x axis")
@@ -223,7 +223,7 @@ window.onload=function(){
 
     // Tides days
     var tide_days_selection = d3.select("#tide").selectAll("div.day")
-        .data(wave_data);
+        .data(data);
 
     tide_days_selection.enter()
         .append("div")

@@ -61,7 +61,7 @@ div.time div.direction img {
     height: 24px;
 }
 
-div.time span.height {
+div.time span.wave_height {
     position: absolute;
     bottom: 24px;
     height: 24px;
@@ -69,12 +69,14 @@ div.time span.height {
     font-size: 80%;
 }
 
-div.time div.height {
+div.time div.wave_height {
     position: absolute;
     bottom: 24px;
+    left: 1px;
     min-height: 3px;
-    width: 40px;
+    width: 38px;
     background: deepskyblue;
+    border-right: 1px solid white;
 }
 
 div.time span.name {
