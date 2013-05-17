@@ -5,12 +5,12 @@ div {
 }
 
 div.day {
-    min-width: 20%;
-    min-height: 200px;
+    width: 120px;
+    height: 200px;
     display: inline-block;
     border: 1px solid black;
     border-right: none;
-    background: lightgray;
+    background: white;
 }
 
 div.day:last-child {
@@ -21,15 +21,16 @@ div.day span {
     display: block;
     text-align: center;
     border-bottom: 1px solid black;
+    height: 30px;
 }
 
 div.time {
-    width: 33%;
-    height: 100%;
+    position: relative;
+    width: 40px;
+    height: 169px;
     display: inline-block;
     border: none;
-    border-right: 1px solid black;
-    background: lightblue;
+    /*border-right: 1px solid black;*/
 }
 
 div.time:last-child {
@@ -40,4 +41,49 @@ div.time span {
     display: block;
     text-align: center;
     border: none;
+    margin: 0;
+    width: 100%;
+    font-size: 120%;
 }
+
+div.time div.direction {
+    position: absolute;
+    top: 0;
+    padding: 3px;
+    border-left: 1px solid white;
+    background: none;
+}
+
+div.time div.direction img {
+    position: relative;
+    margin: 3px;
+    width: 24px;
+    height: 24px;
+}
+
+div.time span.height {
+    position: absolute;
+    bottom: 24px;
+    height: 24px;
+    z-index: 1;
+    font-size: 80%;
+}
+
+div.time div.height {
+    position: absolute;
+    bottom: 24px;
+    min-height: 3px;
+    width: 40px;
+    background: deepskyblue;
+}
+
+div.time span.name {
+    position: absolute;
+    bottom: 0;
+    height: 24px;
+    border-top: 1px solid black;
+    background: white;
+    font-size: 100%;
+
+}
+

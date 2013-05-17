@@ -95,11 +95,48 @@ window.onload=function(){
     });
 
     var times_selection = d3.select("#wave").selectAll("div.time");
+    var rotate = function(d,i) {
+      return "rotate(" + d + "deg)";
+    };
+
     times_selection.each(function(d, i) {
-        var time_selection = d3.select(this).selectAll("div.direction").data([d.direction]);
+        var direction_selection = d3.select(this).selectAll("div.direction").data([d.direction]);
+        // direction
+        direction_selection.enter()
+            .append("div")
+            .classed("direction",true)
+            .append("img")
+            .attr("src","wave-arrow.png")
+            .style("transform", rotate)
+            .style("-ms-transform", rotate)
+            .style("-webkit-transform", rotate)
+
+            /*transform:rotate(43deg);*/
+            /*-ms-transform:rotate(43deg); *//* IE 9 */
+            /*-webkit-transform:rotate(43deg); *//* Safari and Chrome */
+
+            .text(function(d, i) {
+                return d;
+            });
+        // height
+        var height_selection = d3.select(this).selectAll("div.height").data([d.height]);
+        height_selection.enter()
+            .append("span")
+            .classed("height",true)
+            .text(function(d, i) {
+                return d + "ft";
+            });
+        height_selection.enter()
+            .append("div")
+            .classed("height",true)
+            .style("height", function(d,i){
+                return (d * 20) + "px";
+            });
+        // time
+        var time_selection = d3.select(this).selectAll("div.name").data([d.time]);
         time_selection.enter()
             .append("span")
-            .classed("direction",true)
+            .classed("name",true)
             .text(function(d, i) {
                 return d;
             });
