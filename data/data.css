@@ -87,7 +87,30 @@ div.time span.name {
 
 }
 
+div#tide {
+    position: relative;
+}
 
+div#tide div.day {
+    background: none;
+    z-index: 100;
+    border-top: none;
+    height: 60px;
+}
+
+div#tide div.day:last-child {
+    border-right: 1px solid black;
+}
+
+div#tide svg {
+    position: absolute;
+    left: 1px;
+    top: 0;
+    z-index: -100;
+}
+
+div#tide div {
+}
 
 .axis path,
 .axis line {

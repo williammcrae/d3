@@ -179,10 +179,9 @@ window.onload=function(){
     });
 
 
-
     // Tides
 
-    var margin = {top: 20, right: 0, bottom: 30, left: 0},
+    var margin = {top: 10, right: 0, bottom: 30, left: 0},
         width = 240 - margin.left - margin.right,
         height = 100 - margin.top - margin.bottom;
 
@@ -192,20 +191,11 @@ window.onload=function(){
     var y = d3.scale.linear()
         .range([height, 0]);
 
-    var xAxis = d3.svg.axis()
-        .scale(x)
-        .orient("bottom");
-
-    var yAxis = d3.svg.axis()
-        .scale(y)
-        .orient("left");
-
     var svg = d3.select("#tide").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+        .attr("width", width)
+        .attr("height", height)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
 
     var area = d3.svg.area()
         .interpolate("cardinal")
@@ -213,31 +203,31 @@ window.onload=function(){
         .y0(function(d) { return y(d.height); })
         .y1(function(d) { return height; });
 
-
     x.domain([tides_start_timestamp,tides_end_timestamp]);
 
     y.domain([0, d3.max(tides, function(d) { return d.height; })]);
 
     svg.append("g")
         .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-//        .call(xAxis);
+        .attr("transform", "translate(0," + height + ")");
 
     svg.append("g")
-        .attr("class", "y axis")
-//        .call(yAxis);
-
-//    svg.append("path")
-//        .datum(tides)
-//        .attr("class", "line")
-//        .attr("d", line);
+        .attr("class", "y axis");
 
     svg.append("path")
         .datum(tides)
         .attr("class", "line")
         .attr("d", area)
-        .style("fill","red")
-        .style("stroke","green")
+        .style("fill","lightgray")
+        .style("stroke","darkgray")
+
+    // Tides days
+    var tide_days_selection = d3.select("#tide").selectAll("div.day")
+        .data(wave_data);
+
+    tide_days_selection.enter()
+        .append("div")
+        .classed("day", true);
 
 };
 
